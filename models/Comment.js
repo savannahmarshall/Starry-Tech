@@ -3,48 +3,42 @@ const sequelize = require('../config/connection');
 
 class Comment extends Model {}
 
-// Initialize Comment model
 Comment.init(
     {
-        // Define the id column
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false,
         },
-        // Define the content column
         content: {
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        // Define the user_id column
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'user', // for User model
+                model: 'user',
                 key: 'id',
             },
         },
-        // Define the post_id column
         post_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'post', // for Post model
+                model: 'post',
                 key: 'id',
             },
         },
-        // // Define the created_at column
-        // created_at: {
-        //     type: DataTypes.DATE,
-        //     allowNull: false,
-        //     defaultValue: DataTypes.NOW,
-        // },
+        created_at: { 
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
     },
     {
-        sequelize, 
-        timestamps: false, 
-        freezeTableName: true, 
+        sequelize,
+        timestamps: true, 
+        freezeTableName: true,
         underscored: true,
         modelName: 'comment',
     }

@@ -1,49 +1,47 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+// const { Model, DataTypes } = require('sequelize');
+// const sequelize = require('../config/connection');
 
-class Post extends Model {}
+// class Post extends Model {}
 
-// Initialize the Post model
-Post.init(
-    {
-        // Define the id column
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-            allowNull: false,
-        },
-        // Define the title column
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        // Define the content column
-        content: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
-        // Define the user_id column
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user', // for User model
-                key: 'id',
-            },
-        },
-        // // Define the created_at column 
-        // created_at: {
-        //     type: DataTypes.DATE,
-        //     allowNull: false,
-        //     defaultValue: DataTypes.NOW,
-        // },
-    },
-    {
-        sequelize, 
-        timestamps: true, 
-        underscored: true, 
-        modelName: 'post', 
-    }
-);
+// Post.init({
+//   id: {
+//     type: DataTypes.INTEGER,
+//     autoIncrement: true,
+//     primaryKey: true,
+//   },
+//   title: {
+//     type: DataTypes.STRING,
+//     allowNull: false,
+//   },
+//   content: {
+//     type: DataTypes.TEXT,
+//     allowNull: true,  // Allow null values
+//   },
+//   user_id: {
+//     type: DataTypes.INTEGER,
+//     references: {
+//       model: 'user',
+//       key: 'id',
+//     },
+//   },
+//   created_at: {
+//     type: DataTypes.DATE,
+//     allowNull: false,
+//     defaultValue: DataTypes.NOW,
+//   },
+//   updated_at: {
+//     type: DataTypes.DATE,
+//     allowNull: false,
+//     defaultValue: DataTypes.NOW,
+//   },
+//   published: { 
+//     type: DataTypes.BOOLEAN,
+//     allowNull: false,
+//     defaultValue: false,
+//   },
+// }, {
+//   sequelize,
+//   modelName: 'post',
+// });
 
-module.exports = Post;
+// module.exports = Post;
