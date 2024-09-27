@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS starry_db;
+CREATE DATABASE starry_db;
