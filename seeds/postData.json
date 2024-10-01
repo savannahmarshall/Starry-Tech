@@ -1,0 +1,17 @@
+[
+    {
+      "title": "Hello All!",
+      "content": "I am so excited to be posting here!",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "title": "Fall soup recipes?",
+      "content": "Does anyone have some good recipes for homemade soup to help me get in the fall spirit?",
+      "created_at": "2024-01-02T00:00:00Z"
+    },
+    {
+      "title": "New friend...",
+      "content": "I'm looking for a friend to go to the pumpkin patch with. Is anyone free this weekend?",
+      "created_at": "2024-01-03T00:00:00Z"
+    }
+  ]
