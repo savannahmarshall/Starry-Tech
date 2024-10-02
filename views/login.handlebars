@@ -6,6 +6,15 @@
     <title>Login</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
 <body>
     <h1>Login</h1>
     <form action="/login" method="POST">
@@ -17,6 +26,6 @@
 
         <button type="submit">Login</button>
     </form>
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
+    {{!-- <p>Don't have an account? <a href="/signup">Sign up</a></p> --}}
 </body>
 </html>

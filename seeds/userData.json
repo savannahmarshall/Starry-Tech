@@ -1,12 +1,10 @@
 [
     {
-      "name": "Opal Wizard",
-      "email": "opalhunter33@gmail.com",
+      "username": "Opal Wizard",
       "password": "geodude56"
     },
     {
-      "name": "Amethyst Horizon",
-      "email": "iloverocks@hotmail.com",
+      "username": "Amethyst Horizon",
       "password": "rock0n7"
     }
   ]
