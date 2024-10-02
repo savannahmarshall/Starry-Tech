@@ -1,0 +1,104 @@
+/* background styles */
+body.stars-background {
+    background: url('/images/star-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff; /* Default text color */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header styles */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    background-size: cover;
+    background-position: center;
+    padding: 1rem;
+}
+
+/* Navigation styles */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+/* Container styles */
+.container {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Heading styles */
+h1, h2 {
+    color: #c859d4; 
+    background-color: rgba(0, 0, 0, 0.8); 
+    padding: 10px 20px; 
+    display: inline-block; 
+    border-radius: 5px; 
+    margin: 20px 0; 
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Button styles */
+button {
+    background-color: #c9bd76;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #FFA500;
+}
+
+/* Post-specific styles */
+.posts-section {
+    text-align: left; 
+    margin: 20px 0;
+}
+
+/* Style individual post containers */
+.post {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    color: #fff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+}
+
+/* Style post titles */
+.post h2 {
+    color: #c859d4; 
+    font-family: 'Georgia', serif; 
+    font-size: 2rem;
+}
+
+/* Style post content */
+.post p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #ffffff; 
+}
+
+/* Style post metadata */
+.post small {
+    display: block;
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 1rem;
+}
