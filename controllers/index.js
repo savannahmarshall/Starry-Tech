@@ -1,11 +1,15 @@
-const authController = require('./authController');
-const dashboardController = require('./dashboardController');
-const postController = require('./postController');
-const commentController = require('./commentController');
+const express = require('express');
+const authRoutes = require('./authRoutes');
+const postRoutes = require('./postRoutes');
+const commentRoutes = require('./commentRoutes');
+const dashboardRoutes = require('./dashboardRoutes'); 
 
-module.exports = {
-    authController,
-    dashboardController,
-    postController,
-    commentController,
-};
+const router = express.Router(); 
+
+// Use the imported routes
+router.use(authRoutes);
+router.use(postRoutes);
+router.use(commentRoutes);
+router.use(dashboardRoutes); 
+
+module.exports = router; 
