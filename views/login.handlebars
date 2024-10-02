@@ -3,21 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login / Sign Up</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script>
+        function toggleForms() {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const toggleText = document.getElementById('toggle-text');
+
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                toggleText.innerText = "Don't have an account? Sign up";
+            } else {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                toggleText.innerText = "Already have an account? Login";
+            }
+        }
+    </script>
 </head>
-<header>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/logout">Logout</a></li>
-        </ul>
-    </nav>
-</header>
 <body>
-    <h1>Login</h1>
-    <form action="/login" method="POST">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1 id="form-title">Login / Sign Up</h1>
+
+    <!-- Login Form -->
+    <form id="login-form" action="/login" method="POST">
         <label for="username">Username:</label>
         <input type="text" name="username" required>
 
@@ -26,6 +46,18 @@
 
         <button type="submit">Login</button>
     </form>
-    {{!-- <p>Don't have an account? <a href="/signup">Sign up</a></p> --}}
+
+    <!-- Signup Form -->
+    <form id="signup-form" action="/auth/signup" method="POST" style="display: none;">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <p id="toggle-text">Don't have an account? <a href="javascript:void(0)" onclick="toggleForms()">Sign up</a></p>
 </body>
 </html>
