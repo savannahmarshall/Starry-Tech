@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const withAuth = require('../utils/auth'); 
 
 // POST /login route
 router.post('/login', async (req, res) => {
@@ -66,6 +67,22 @@ router.post('/signup', async (req, res) => {
     console.log('Error during signup:', err);
     return res.status(500).render('homepage', { errorMessage: 'Internal server error' });
   }
+});
+
+// Use the authentication middleware for the dashboard route
+router.get('/dashboard', withAuth, (req, res) => {
+  res.render('dashboard', { posts: [] }); 
+});
+
+// Add a logout route
+router.post('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.log('Error during logout:', err);
+      return res.status(500).render('homepage', { errorMessage: 'Internal server error' });
+    }
+    res.redirect('/'); 
+  });
 });
 
 module.exports = router;
