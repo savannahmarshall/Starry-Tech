@@ -16,7 +16,7 @@ const loginFormHandler = async (event) => {
           console.log('Payload:', JSON.stringify(payload));
 
           // Send a POST request to the API endpoint
-          const response = await fetch('/login', {
+          const response = await fetch('/api/users/login', {
               method: 'POST',
               body: JSON.stringify(payload),
               headers: { 'Content-Type': 'application/json' },
@@ -28,8 +28,8 @@ const loginFormHandler = async (event) => {
               document.location.replace('/dashboard'); 
           } else {
               const errorResponse = await response.json();
-              console.error('Error response:', errorResponse);
-              alert('Error: ' + (errorResponse.errorMessage || 'Invalid username or password'));
+              console.error('PASSWORD STILL DOESN"T WORK', errorResponse);
+              alert('Error: ' + (errorResponse.errorMessage || 'PASSWORD STILL DOESN"T WORK'));
           }
       } catch (error) {
           console.error('Error during login:', error); 
@@ -54,7 +54,7 @@ const signupFormHandler = async (event) => {
   if (username && password) {
       try {
           console.log('Sending signup request...');
-          const response = await fetch('/signup', {
+          const response = await fetch('/api/users/signup', {
               method: 'POST',
               body: JSON.stringify({ username, password }),
               headers: { 'Content-Type': 'application/json' },
