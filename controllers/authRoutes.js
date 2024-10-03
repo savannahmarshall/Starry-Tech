@@ -4,37 +4,6 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const withAuth = require('../utils/auth'); 
 
-// POST /login route
-router.post('/login', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-
-    // Find the user by username
-    const user = await User.findOne({ where: { username } });
-
-    // If user is not found, return an error response
-    if (!user) {
-      return res.status(400).render('homepage', { errorMessage: 'Invalid username or password' });
-    }
-
-    // Check if the password is correct using bcrypt
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(400).render('homepage', { errorMessage: 'Invalid username or password' });
-    }
-
-    // Create session and log the user in
-    req.session.userId = user.id;
-    req.session.loggedIn = true; 
-
-    // Redirect to homepage after successful login
-    return res.redirect('/'); 
-  } catch (err) {
-    console.log('Error during login:', err);
-    return res.status(500).render('homepage', { errorMessage: 'Internal server error' });
-  }
-});
-
 // POST /signup route
 router.post('/signup', async (req, res) => {
   try {
@@ -42,13 +11,13 @@ router.post('/signup', async (req, res) => {
 
     // Check if all required fields are provided
     if (!username || !password) {
-      return res.status(400).render('homepage', { errorMessage: 'All fields are required' });
+      return res.status(400).json({ errorMessage: 'All fields are required' });
     }
 
     // Check if username is already registered
     const existingUser = await User.findOne({ where: { username } });
     if (existingUser) {
-      return res.status(400).render('homepage', { errorMessage: 'Username is already registered' });
+      return res.status(400).json({ errorMessage: 'Username is already registered' });
     }
 
     // Hash the password before saving it
@@ -61,11 +30,55 @@ router.post('/signup', async (req, res) => {
     req.session.userId = newUser.id;
     req.session.loggedIn = true; 
 
-    // Redirect to homepage after successful signup
-    return res.redirect('/');
+    // Return success response
+    return res.json({ success: true, message: 'Signup successful!' });
   } catch (err) {
     console.log('Error during signup:', err);
-    return res.status(500).render('homepage', { errorMessage: 'Internal server error' });
+    return res.status(500).json({ errorMessage: 'Internal server error' });
+  }
+});
+
+// POST /login route
+router.post('/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    // Validate inputs
+    if (!username || !password) {
+      return res.status(400).json({ errorMessage: 'Username and password are required.' });
+    }
+
+    // Find the user by username
+    const user = await User.findOne({ where: { username } });
+    console.log('User found:', user); // Log the user object
+
+    // If user is not found, return an error response
+    if (!user) {
+      console.log('No user found with that username.');
+      return res.status(400).json({ errorMessage: 'Invalid username or password.' });
+    }
+
+    // Log the password being attempted
+    console.log('Attempting to log in with password:', password);
+
+    // Check if the password is correct using bcrypt
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    console.log('Password valid:', isPasswordValid); 
+
+    if (!isPasswordValid) {
+      console.log('Password does not match.');
+      return res.status(400).json({ errorMessage: 'Invalid username or password.' });
+    }
+
+    // Create session and log the user in
+    req.session.userId = user.id;
+    req.session.loggedIn = true;
+
+    // Return success response
+    return res.json({ success: true, message: 'Login successful!' });
+  } catch (err) {
+    console.error('Error during login:', err);
+    return res.status(500).json({ errorMessage: 'Internal server error.' });
   }
 });
 
@@ -85,4 +98,4 @@ router.post('/logout', (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = router;;

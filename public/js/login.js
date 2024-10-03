@@ -1,54 +1,84 @@
 const loginFormHandler = async (event) => {
-    event.preventDefault();
-  
-    // Collect values from the login form
-    const email = document.querySelector('#email-login').value.trim();
-    const password = document.querySelector('#password-login').value.trim();
-  
-    if (email && password) {
-      // Send a POST request to the API endpoint
-      const response = await fetch('/api/users/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        // If successful, redirect the browser to the profile page
-        document.location.replace('/profile');
-      } else {
-        alert(response.statusText);
+  event.preventDefault();
+  console.log('Login form submitted');
+
+  const username = document.querySelector('#login-form input[name="username"]').value.trim();
+  const password = document.querySelector('#login-form input[name="password"]').value.trim();
+  console.log('Username:', username);
+  console.log('Password:', password);
+
+  if (username && password) {
+      try {
+          console.log('Sending login request...');
+
+          // Log the payload before sending the request
+          const payload = { username, password };
+          console.log('Payload:', JSON.stringify(payload));
+
+          // Send a POST request to the API endpoint
+          const response = await fetch('/login', {
+              method: 'POST',
+              body: JSON.stringify(payload),
+              headers: { 'Content-Type': 'application/json' },
+          });
+
+          console.log('Response status:', response.status);
+          if (response.ok) {
+              console.log('Login successful, redirecting to dashboard');
+              document.location.replace('/dashboard'); 
+          } else {
+              const errorResponse = await response.json();
+              console.error('Error response:', errorResponse);
+              alert('Error: ' + (errorResponse.errorMessage || 'Invalid username or password'));
+          }
+      } catch (error) {
+          console.error('Error during login:', error); 
+          alert('An unexpected error occurred. Please try again.');
       }
-    }
-  };
-  
-  const signupFormHandler = async (event) => {
-    event.preventDefault();
-  
-    const name = document.querySelector('#name-signup').value.trim();
-    const email = document.querySelector('#email-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
-  
-    if (name && email && password) {
-      const response = await fetch('/api/users', {
-        method: 'POST',
-        body: JSON.stringify({ name, email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        document.location.replace('/profile');
-      } else {
-        alert(response.statusText);
+  } else {
+      console.log('Username or password is empty');
+      alert('Please fill in both fields');
+  }
+};
+
+// Signup Form Handler
+const signupFormHandler = async (event) => {
+  event.preventDefault();
+  console.log('Signup form submitted');
+
+  const username = document.querySelector('#signup-form input[name="username"]').value.trim();
+  const password = document.querySelector('#signup-form input[name="password"]').value.trim();
+  console.log('Signup Username:', username);
+  console.log('Signup Password:', password);
+
+  if (username && password) {
+      try {
+          console.log('Sending signup request...');
+          const response = await fetch('/signup', {
+              method: 'POST',
+              body: JSON.stringify({ username, password }),
+              headers: { 'Content-Type': 'application/json' },
+          });
+
+          console.log('Signup response status:', response.status);
+          if (response.ok) {
+              console.log('Signup successful, redirecting to dashboard');
+              document.location.replace('/dashboard');
+          } else {
+              const errorResponse = await response.json();
+              console.error('Error response:', errorResponse); 
+              alert('Error: ' + (errorResponse.errorMessage || 'Error signing up. Please try again.'));
+          }
+      } catch (error) {
+          console.error('Error during signup:', error); 
+          alert('An unexpected error occurred. Please try again.');
       }
-    }
-  };
-  
-  document
-    .querySelector('.login-form')
-    .addEventListener('submit', loginFormHandler);
-  
-  document
-    .querySelector('.signup-form')
-    .addEventListener('submit', signupFormHandler);
-  
+  } else {
+      console.log('Signup Username or password is empty');
+      alert('Please fill in both fields');
+  }
+};
+
+// Attach form event listeners
+document.querySelector('#login-form').addEventListener('submit', loginFormHandler);
+document.querySelector('#signup-form').addEventListener('submit', signupFormHandler);
