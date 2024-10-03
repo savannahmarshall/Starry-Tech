@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>Home - Blog</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="stars-background">
+<body>
     <header>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                {{#if logged_in}}
+                {{#if loggedIn}}
+                    <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/logout">Logout</a></li>
                 {{else}}
                     <li><a href="/login">Login</a></li>
@@ -28,6 +28,8 @@
                 <h2><a href="/posts/{{id}}">{{title}}</a></h2>
                 <p>Posted on: {{createdAt}}</p>
             </article>
+        {{else}}
+            <p>No blog posts available at this time.</p>
         {{/each}}
     </main>
 </body>

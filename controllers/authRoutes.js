@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../models/user');
+const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
 // POST /login route
@@ -13,20 +13,24 @@ router.post('/login', async (req, res) => {
 
     // If user is not found, return an error response
     if (!user) {
-      return res.status(400).json({ message: 'Invalid username or password' });
+      return res.status(400).render('homepage', { errorMessage: 'Invalid username or password' });
     }
 
-    // Check if the password is correct
-    const isPasswordValid = user.checkPassword(password);
+    // Check if the password is correct using bcrypt
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(400).json({ message: 'Invalid username or password' });
+      return res.status(400).render('homepage', { errorMessage: 'Invalid username or password' });
     }
 
-    req.session.userId = user.id; 
-    return res.status(200).json({ message: 'Login successful', user });
+    // Create session and log the user in
+    req.session.userId = user.id;
+    req.session.loggedIn = true; 
+
+    // Redirect to homepage after successful login
+    return res.redirect('/'); 
   } catch (err) {
     console.log('Error during login:', err);
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).render('homepage', { errorMessage: 'Internal server error' });
   }
 });
 
@@ -35,23 +39,32 @@ router.post('/signup', async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    // Check if all required fields are provided
     if (!username || !password) {
-      return res.status(400).json({ message: 'All fields are required' });
+      return res.status(400).render('homepage', { errorMessage: 'All fields are required' });
     }
 
+    // Check if username is already registered
     const existingUser = await User.findOne({ where: { username } });
     if (existingUser) {
-      return res.status(400).json({ message: 'Username is already registered' });
+      return res.status(400).render('homepage', { errorMessage: 'Username is already registered' });
     }
 
     // Hash the password before saving it
-    const hashedPassword = await bcrypt.hash(password, 8); 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create the new user
     const newUser = await User.create({ username, password: hashedPassword });
 
-    return res.status(201).json({ message: 'Signup successful', user: newUser });
+    // Create session and log the user in after signup
+    req.session.userId = newUser.id;
+    req.session.loggedIn = true; 
+
+    // Redirect to homepage after successful signup
+    return res.redirect('/');
   } catch (err) {
     console.log('Error during signup:', err);
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).render('homepage', { errorMessage: 'Internal server error' });
   }
 });
 

@@ -12,13 +12,15 @@
             const toggleText = document.getElementById('toggle-text');
 
             if (loginForm.style.display === 'none') {
+                // Show the login form and hide the signup form
                 loginForm.style.display = 'block';
                 signupForm.style.display = 'none';
-                toggleText.innerText = "Don't have an account? Sign up";
+                toggleText.innerHTML = `Don't have an account? <a href="javascript:void(0)" onclick="toggleForms()">Sign up</a>`;
             } else {
+                // Show the signup form and hide the login form
                 loginForm.style.display = 'none';
                 signupForm.style.display = 'block';
-                toggleText.innerText = "Already have an account? Login";
+                toggleText.innerHTML = `Already have an account? <a href="javascript:void(0)" onclick="toggleForms()">Login</a>`;
             }
         }
     </script>
@@ -48,7 +50,7 @@
     </form>
 
     <!-- Signup Form -->
-    <form id="signup-form" action="/auth/signup" method="POST" style="display: none;">
+    <form id="signup-form" action="/signup" method="POST" style="display: none;">
         <label for="username">Username:</label>
         <input type="text" name="username" required>
 
