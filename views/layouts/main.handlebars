@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starry-Tech</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="stars-background">
-    {{{header}}} 
-    
-    <main>
-        {{{body}}}  
-    </main>
-    
-   <footer>
+
+<body class="stars-background"> 
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li>
+          <a href="{{#if logged_in}}/dashboard{{else}}/login{{/if}}">
+            Dashboard
+          </a>
+        </li>
+        {{#if logged_in}}
+          <li><a href="/logout">Logout</a></li>
+        {{else}}
+          <li><a href="/login">Login</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container container-fluid mt-5">
+    {{{ body }}}
+  </main>
+
+  <footer>
     <p>Powered by Stars & Cosmos</p>
-</footer>
+  </footer>
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </body>
+
 </html>
+
 

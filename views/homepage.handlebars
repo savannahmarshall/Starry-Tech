@@ -1,36 +1,13 @@
-{{!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Blog</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head> --}}
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                {{#if isLoggedIn}}
-                    <li><a href="/logout">Logout</a></li>
-                {{else}}
-                    <li><a href="/login">Login</a></li>
-                {{/if}}
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <h1>Blog Posts</h1>
+<main class="container">
+    <h1>Blog Posts</h1>
+    <section class="posts-section">
         {{#each posts}}
-            <article>
+            <article class="post">
                 <h2><a href="/posts/{{id}}">{{title}}</a></h2>
                 <p>Posted on: {{createdAt}}</p>
             </article>
         {{else}}
             <p>No blog posts available at this time.</p>
         {{/each}}
-    </main>
-</body>
-</html>
+    </section>
+</main>

@@ -1,45 +1,20 @@
-{{!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Dashboard</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head> --}}
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/logout">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
+<h1>Your Star-filled Dashboard</h1>
 
-    <main>
-        <h1>Your Star-filled Dashboard</h1>
+<button id="new-post-btn" onclick="location.href='/posts/new'">Create a New Post</button>
 
-        <button id="new-post-btn" onclick="location.href='/posts/new'">Create a New Post</button>
-
-        {{#if posts.length}}
-            <section class="user-posts">
-                <h2>Your Posts</h2>
-                {{#each posts}}
-                    <div class="post">
-                        <h3><a href="/posts/{{this.id}}">{{this.title}}</a></h3>
-                        <p>{{this.content}}</p>
-                        <small>Created on {{this.createdAt}}</small>
-                        <button data-id="{{this.id}}" class="edit-btn" onclick="location.href='/posts/{{this.id}}/edit'">Edit</button>
-                        <button data-id="{{this.id}}" class="delete-btn" onclick="location.href='/posts/{{this.id}}/delete'">Delete</button>
-                    </div>
-                {{/each}}
-            </section>
-        {{else}}
-            <p>You haven't posted any blog entries yet.</p>
-        {{/if}}
-    </main>
-
-    <script src="/js/dashboard.js"></script>
-</body>
-</html>
+{{#if posts.length}}
+  <section class="posts-section">
+    <h2>Your Posts</h2>
+    {{#each posts}}
+      <div class="post">
+        <h3><a href="/posts/{{this.id}}">{{this.title}}</a></h3>
+        <p>{{this.content}}</p>
+        <small>Created on {{this.createdAt}}</small>
+        <button data-id="{{this.id}}" class="edit-btn" onclick="location.href='/posts/{{this.id}}/edit'">Edit</button>
+        <button data-id="{{this.id}}" class="delete-btn" onclick="location.href='/posts/{{this.id}}/delete'">Delete</button>
+      </div>
+    {{/each}}
+  </section>
+{{else}}
+  <p>You haven't posted any blog entries yet.</p>
+{{/if}}
