@@ -42,7 +42,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   console.log('Login page accessed. Logged in:', req.session.logged_in);
   if (req.session.logged_in) {
-    return res.redirect('/dashboard');
+    // return res.redirect('/dashboard');
   }
   res.render('login', { logged_in: req.session.logged_in });
 });

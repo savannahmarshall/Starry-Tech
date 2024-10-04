@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
-// const withAuth = require('../utils/auth'); 
-
 
 router.post('/', async (req, res) => {
   try {
@@ -36,7 +34,7 @@ router.post('/signup', async (req, res) => {
     }
 
     // Hash the password before saving it
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10); 
 
     // Create the new user
     const newUser = await User.create({ username, password: hashedPassword });
@@ -53,36 +51,39 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-
-
 // POST route for login
 router.post('/login', async (req, res) => {
   try {
-    console.log('Login attempt with username:', req.body.username);
+    // Validate input
+    if (!req.body.username || !req.body.password) {
+      return res.status(400).json({ message: 'Username and password are required.' });
+    }
+    
+    // Attempt to find the user by username
     const userData = await User.findOne({ where: { username: req.body.username } });
 
+    // Check if userData is found
     if (!userData) {
-      console.log('User not found');
       return res.status(401).json({ message: 'Incorrect username or password. Please try again.' });
     }
 
-    const validPassword = await bcrypt.compare(req.body.password, userData.password);
+    // Compare the password
+    const validPassword = await bcrypt.compareSync(req.body.password, userData.password);
     if (!validPassword) {
-      console.log('Invalid password');
       return res.status(401).json({ message: 'Incorrect username or password. Please try again.' });
     }
 
+    // Set session variables if authentication is successful
     req.session.user_id = userData.id;
     req.session.logged_in = true;
 
-    console.log('Login successful, redirecting to dashboard');
-    return res.redirect('/dashboard');
+    return res.status(200).json({ message: 'Login successful!' });
   } catch (err) {
-    console.error('Error during login:', err);
-    res.status(500).json({ message: 'Server error', error: err });
+    return res.status(500).json({ message: 'Server error', error: err });
   }
 });
 
+// POST route for logout
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
