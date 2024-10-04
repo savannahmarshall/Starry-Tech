@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
-// const withAuth = require('../../utils/auth'); 
+// const withAuth = require('../utils/auth'); 
 
 
 router.post('/', async (req, res) => {
@@ -42,11 +42,11 @@ router.post('/signup', async (req, res) => {
     const newUser = await User.create({ username, password: hashedPassword });
 
     // Create session and log the user in after signup
-    req.session.userId = newUser.id;
-    req.session.loggedIn = true; 
+    req.session.user_id = newUser.id;
+    req.session.logged_in = true; 
 
-    // Return success response
-    return res.json({ success: true, message: 'Signup successful!' });
+    // Redirect to the dashboard after successful signup
+    return res.redirect('/dashboard'); 
   } catch (err) {
     console.log('Error during signup:', err);
     return res.status(500).json({ errorMessage: 'Internal server error' });
@@ -54,29 +54,31 @@ router.post('/signup', async (req, res) => {
 });
 
 
+
 // POST route for login
 router.post('/login', async (req, res) => {
   try {
-    // Find the user by username
+    console.log('Login attempt with username:', req.body.username);
     const userData = await User.findOne({ where: { username: req.body.username } });
 
-    // Check if user exists
     if (!userData) {
+      console.log('User not found');
       return res.status(401).json({ message: 'Incorrect username or password. Please try again.' });
     }
 
-    // Verify the password
     const validPassword = await bcrypt.compare(req.body.password, userData.password);
     if (!validPassword) {
+      console.log('Invalid password');
       return res.status(401).json({ message: 'Incorrect username or password. Please try again.' });
     }
 
-    // Create session variables
     req.session.user_id = userData.id;
     req.session.logged_in = true;
 
-    return res.json({ message: 'Login successful!' });
+    console.log('Login successful, redirecting to dashboard');
+    return res.redirect('/dashboard');
   } catch (err) {
+    console.error('Error during login:', err);
     res.status(500).json({ message: 'Server error', error: err });
   }
 });
@@ -84,7 +86,7 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      res.status(204).end();
+      res.status(204).end(); 
     });
   } else {
     res.status(404).end();

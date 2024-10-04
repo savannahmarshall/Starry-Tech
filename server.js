@@ -42,7 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Use routes
-app.use(routes); // This should work if routes are set up correctly
+app.use(routes); 
 
 // Start the server
 const startServer = async () => {

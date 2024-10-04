@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, User } = require('../models'); //add comment model later when working on comments
 const withAuth = require('../utils/auth');
-const bcrypt = require('bcrypt'); // Ensure bcrypt is installed for password hashing
 
 // GET route for the homepage
 router.get('/', async (req, res) => {
@@ -13,38 +12,39 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Route for the dashboard, protected by withAuth middleware
+// Route for the dashboard
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Post }],
     });
 
+    // Check if userData is found
+    if (!userData) {
+      console.log('User not found for dashboard, redirecting to login.');
+      return res.redirect('/login'); 
+    }
+
     const user = userData.get({ plain: true });
 
-    // Render the dashboard with user data
     res.render('dashboard', {
       ...user,
       logged_in: true,
     });
   } catch (err) {
+    console.error('Error fetching dashboard data:', err);
     res.status(500).json(err);
   }
 });
 
 // Route for the login page
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to the dashboard
+  console.log('Login page accessed. Logged in:', req.session.logged_in);
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
+    return res.redirect('/dashboard');
   }
-
-  // Render the login page
-  res.render('login');
+  res.render('login', { logged_in: req.session.logged_in });
 });
-
 
 module.exports = router;
