@@ -2,7 +2,7 @@
 body.stars-background {
     background: url('/images/star-background.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #fff; /* Default text color */
+    color: #fff; 
     font-family: 'Arial', sans-serif;
 }
 
@@ -35,7 +35,7 @@ nav ul li a {
 
 /* Heading styles */
 h1, h2 {
-    color: #c859d4; 
+    color: #d7cd3e; 
     background-color: rgba(0, 0, 0, 0.8); 
     padding: 10px 20px; 
     display: inline-block; 
@@ -45,15 +45,30 @@ h1, h2 {
 
 /* Footer styles */
 footer {
-    text-align: center;
+    text-align: center; 
+    background-color: rgba(0, 0, 0, 0.8); 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    font-weight: bold;
     margin-top: 2rem;
     font-size: 0.9rem;
-    color: #ccc;
+    color:  #359fc6;
 }
 
+.footer-content {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.footer-icon {
+    width: 20px; 
+    height: auto; 
+    margin: 0 5px; 
+}
 /* Button styles */
 button {
-    background-color: #c9bd76;
+    background-color: #359fc6;
     border: none;
     color: black;
     padding: 10px 20px;

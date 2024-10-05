@@ -83,15 +83,14 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// POST route for logout
+// POST Route for logout
 router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end(); 
-    });
-  } else {
-    res.status(404).end();
-  }
+  req.session.destroy(err => {
+      if (err) {
+          return res.status(500).json({ message: 'Error logging out' });
+      }
+      res.status(200).json({ message: 'Logout successful' });
+  });
 });
 
 module.exports = router;
