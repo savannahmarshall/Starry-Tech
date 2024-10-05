@@ -1,45 +1,91 @@
-/* background styles */
+/* default styles */
+html, body {
+    height: 100%;
+    margin: 0;   
+}
+
+/* Background styles */
 body.stars-background {
     background: url('/images/star-background.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #fff; 
-    font-family: 'Arial', sans-serif;
+    display: flex;          
+    flex-direction: column; 
 }
 
 /* Header styles */
 header {
     background: rgba(0, 0, 0, 0.7);
-    background-size: cover;
-    background-position: center;
     padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
+    font-family: "Press Start 2P", system-ui;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+/* Header container styles */
+.header-container {
+    display: flex;
+    align-items: center; 
+}
+
+.header-icon {
+    width: 50px; 
+    height: auto; 
+    margin-left: 5px;
+}
+
+/* Header content */
+.header-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+/* Site title styles */
+.site-title {
+    font-size: 2.2rem; 
+    margin: 0; 
 }
 
 /* Navigation styles */
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: space-around;
+    padding: 0; 
+}
+
+nav ul li {
+    margin-left: 50px; 
 }
 
 nav ul li a {
-    color: #fff;
+    color: #d7cd3e; 
     text-decoration: none;
-    font-size: 25px;
+    font-size: 2rem; 
+    transition: color 0.3s; 
+}
+
+nav ul li a:hover {
+    color: #FFA500; 
 }
 
 /* Container styles */
 .container {
+    flex: 1;            
     padding: 2rem;
     text-align: center;
 }
 
 /* Heading styles */
 h1, h2 {
-    color: #d7cd3e; 
+    color: #25bbf1;
     background-color: rgba(0, 0, 0, 0.8); 
     padding: 10px 20px; 
     display: inline-block; 
     border-radius: 5px; 
+    font-family: "Press Start 2P", system-ui;
     margin: 20px 0; 
 }
 
@@ -48,45 +94,35 @@ footer {
     text-align: center; 
     background-color: rgba(0, 0, 0, 0.8); 
     padding: 10px 20px; 
-    border-radius: 5px; 
     font-weight: bold;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color:  #359fc6;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 1.2rem;
+    color: #25bbf1;
+    margin-top: auto; 
 }
 
+/* Footer content */
 .footer-content {
     display: flex; 
     justify-content: center; 
     align-items: center; 
 }
 
+/* Footer icon */
 .footer-icon {
-    width: 20px; 
+    width: 35px; 
     height: auto; 
     margin: 0 5px; 
 }
-/* Button styles */
-button {
-    background-color: #359fc6;
-    border: none;
-    color: black;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin: 10px 0;
-}
 
-button:hover {
-    background-color: #FFA500;
-}
 
 /* Post-specific styles */
 .posts-section {
-    text-align: left; 
+    text-align: center; 
     margin: 20px 0;
 }
 
-/* Style individual post containers */
+/* Style individual post containers
 .post {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 1.5rem;
@@ -97,23 +133,113 @@ button:hover {
 }
 
 /* Style post titles */
-.post h2 {
+/* .post h2 {
     color: #c859d4; 
     font-family: 'Georgia', serif; 
     font-size: 2rem;
-}
+} */
 
 /* Style post content */
-.post p {
+/* .post p {
     font-size: 1.1rem;
     line-height: 1.5;
     color: #ffffff; 
-}
+} */
 
 /* Style post metadata */
-.post small {
+/* .post small {
     display: block;
     font-size: 0.9rem;
     color: #ccc;
     margin-top: 1rem;
+} */ */
+
+/* Create Post button container */
+.create-post-container {
+    text-align: center; 
+    margin: 20px 0; 
+}
+
+/* New Post Form Container styles */
+#new-post-form-container {
+    background: url('/images/post-background.webp') no-repeat center center fixed; 
+    background-size: cover; 
+    padding: 2rem; 
+    border-radius: 10px; 
+    margin: 20px auto; 
+    width: 100%;
+    max-width: 2000px; 
+    min-height: 700px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* Button styles */
+.create-post-btn {
+    background-color: #46e7a3;
+    border: none; 
+    color: #000000;  
+    padding: 15px 30px; 
+    font-size: 2rem; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin: 10px auto; 
+    font-family: "Press Start 2P", system-ui; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+/* Button hover effect */
+.create-post-btn:hover {
+    background-color: #38b69c; 
+}
+
+.submit-post-btn {
+    background-color: #46e7a3; 
+    font-family: "Press Start 2P", system-ui; 
+    color: #000000;  
+    padding: 15px 30px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 1.5rem;
+    cursor: pointer; 
+    width: 100%; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+/* Button hover effect */
+.submit-post-btn:hover {
+    background-color: #38b69c; 
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 30px; 
+}
+
+.form-label { 
+    color: white;
+    font-family: "Press Start 2P", system-ui; 
+    font-size: 1.8rem; 
+    margin-bottom: 5px; 
+    display: block; 
+    text-align: left; 
+    padding: 5px; 
+    border-radius: 5px; 
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(5, 49, 121, 0.7); 
+    font-family: "Press Start 2P", system-ui; 
+    color: white;
+}
+
+textarea.form-input {
+    height: 150px; 
+    width: 100%;
 }

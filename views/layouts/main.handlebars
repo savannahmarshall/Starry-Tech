@@ -5,42 +5,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Starry-Tech</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="stars-background"> 
-<header>
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li>
-        <a href="{{#if logged_in}}/dashboard{{else}}/login{{/if}}">
-          Dashboard
-        </a>
-      </li>
-      {{#if logged_in}}
-        <li><a href="javascript:void(0)" id="logout">Logout</a></li>
-      {{else}}
-        <li><a href="/login">Login</a></li>
-      {{/if}}
-    </ul>
-  </nav>
-</header>
+  <header>
+   <div class="header-container">
+        <h1 class="site-title">Starry-Tech</h1>
+        <img src="/images/star.png" alt="Star icon" class="header-icon">
+    </div>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li>
+            <a href="{{#if logged_in}}/dashboard{{else}}/login{{/if}}">
+              Dashboard
+            </a>
+          </li>
+          {{#if logged_in}}
+            <li><a href="javascript:void(0)" id="logout">Logout</a></li>
+          {{else}}
+            <li><a href="/login">Login</a></li>
+          {{/if}}
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <main class="container container-fluid mt-5">
+  <main class="container">
     {{{ body }}}
   </main>
 
-<footer>
-  <div class="footer-content">
-    <img src="/images/star-icon.png" alt="Left Icon" class="footer-icon">
-    <p>Powered by Stars & Cosmos</p>
-    <img src="/images/star-icon.png" alt="Right Icon" class="footer-icon"> 
-  </div>
-</footer>
+  <footer>
+    <div class="footer-content">
+      <img src="/images/star-icon.png" alt="Star icon" class="footer-icon">
+      <p>Powered by Stars & Cosmos</p>
+      <img src="/images/star-icon.png" alt="Star Icon" class="footer-icon"> 
+    </div>
+  </footer>
 
   {{#if logged_in}}
-  <script src="/js/logout.js"></script>
+    <script src="/js/logout.js"></script>
   {{/if}}
 </body>
 

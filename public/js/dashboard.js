@@ -1,95 +1,56 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//     const newPostForm = document.getElementById('new-post-form');
-//     const postContainer = document.querySelector('.user-posts');
-//     const newPostBtn = document.getElementById('new-post-btn');
+// Show the new post form when clicking the "Create a New Post" button
+const newPostBtn = document.querySelector('#new-post-btn');
+const newPostFormContainer = document.querySelector('#new-post-form-container');
 
-//     // Initially hide the new post form
-//     newPostForm.style.display = 'none';
+newPostBtn.addEventListener('click', () => {
+  newPostFormContainer.style.display = 'block';
+});
 
-//     // Show/hide the new post form
-//     newPostBtn.addEventListener('click', () => {
-//         newPostForm.style.display = newPostForm.style.display === 'none' ? 'block' : 'none';
+// // Handle form submission to create a new post
+// const newPostForm = document.querySelector('#new-post-form');
+// newPostForm.addEventListener('submit', async (event) => {
+//   event.preventDefault();
+
+//   const title = document.querySelector('#title').value.trim();
+//   const content = document.querySelector('#content').value.trim();
+
+//   if (title && content) {
+//     const response = await fetch('/posts', {
+//       method: 'POST',
+//       body: JSON.stringify({ title, content }),
+//       headers: { 'Content-Type': 'application/json' },
 //     });
 
-//     // Handle new post submission via AJAX
-//     newPostForm.addEventListener('submit', async (e) => {
-//         e.preventDefault();
+//     if (response.ok) {
+//       // Redirect back to the dashboard after successful post
+//       document.location.replace('/dashboard');
+//     } else {
+//       alert('Failed to create post');
+//     }
+//   }
+// });
 
-//         const title = document.getElementById('title').value;
-//         const content = document.getElementById('content').value;
-
-//         const response = await fetch('/posts', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({ title, content }),
-//         });
-
-//         if (response.ok) {
-//             const newPost = await response.json();
-//             addPostToDOM(newPost);
-//             newPostForm.reset();
-//             newPostForm.style.display = 'none'; // Hide the form after submission
-//         } else {
-//             alert('Error creating post.');
-//         }
+// // Handle deletion of posts
+// document.querySelectorAll('.delete-btn').forEach(button => {
+//   button.addEventListener('click', async (event) => {
+//     const id = event.target.getAttribute('data-id');
+    
+//     const response = await fetch(`/posts/${id}`, {
+//       method: 'DELETE',
 //     });
 
-//     // Add new post to the DOM
-//     const addPostToDOM = (post) => {
-//         const postElement = document.createElement('div');
-//         postElement.classList.add('post');
-//         postElement.innerHTML = `
-//             <h3>${post.title}</h3>
-//             <p>${post.content}</p>
-//             <button data-id="${post.id}" class="edit-btn">Edit</button>
-//             <button data-id="${post.id}" class="delete-btn">Delete</button>
-//         `;
-//         postContainer.appendChild(postElement);
+//     if (response.ok) {
+//       document.location.replace('/dashboard');
+//     } else {
+//       alert('Failed to delete post');
+//     }
+//   });
+// });
 
-//         // Attach event listeners to the new buttons
-//         postElement.querySelector('.edit-btn').addEventListener('click', () => {
-//             editPost(post.id);
-//         });
-
-//         postElement.querySelector('.delete-btn').addEventListener('click', () => {
-//             deletePost(post.id);
-//         });
-//     };
-
-//     // Handle post deletion via AJAX
-//     const deletePost = async (postId) => {
-//         const response = await fetch(`/posts/${postId}`, {
-//             method: 'DELETE',
-//         });
-
-//         if (response.ok) {
-//             document.querySelector(`button[data-id="${postId}"]`).parentElement.remove();
-//         } else {
-//             alert('Error deleting post.');
-//         }
-//     };
-
-//     // Handle post editing (AJAX)
-//     const editPost = async (postId) => {
-//         const newTitle = prompt('Enter new title');
-//         const newContent = prompt('Enter new content');
-
-//         const response = await fetch(`/posts/${postId}`, {
-//             method: 'PUT',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({ title: newTitle, content: newContent }),
-//         });
-
-//         if (response.ok) {
-//             const postElement = document.querySelector(`button[data-id="${postId}"]`).parentElement;
-//             postElement.querySelector('h3').textContent = newTitle;
-//             postElement.querySelector('p').textContent = newContent;
-//         } else {
-//             alert('Error editing post.');
-//         }
-//     };
+// // Handle post edit (you can extend this logic if necessary)
+// document.querySelectorAll('.edit-btn').forEach(button => {
+//   button.addEventListener('click', (event) => {
+//     const id = event.target.getAttribute('data-id');
+//     location.href = `/posts/${id}/edit`;
+//   });
 // });
