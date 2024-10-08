@@ -1,13 +1,50 @@
-<main class="container">
+{{!-- <main class="container">
     <h1>Blog Posts</h1>
     <section class="posts-section">
         {{#each posts}}
             <article class="post">
                 <h2><a href="/posts/{{id}}">{{title}}</a></h2>
                 <p>Posted on: {{createdAt}}</p>
+                <p>{{content}}</p>
+                <button class="comment-btn" onclick="window.location.href='/posts/{{id}}/comments'">Leave a Comment</button>
             </article>
         {{else}}
             <p>No blog posts available at this time.</p>
         {{/each}}
     </section>
+</main> --}}
+
+{{!-- <main class="container">
+    <h1>Blog Posts</h1>
+    <section class="posts-section">
+        {{#each posts}}
+            <article class="post">
+                <h2>{{title}}</h2>
+                <p>{{content}}</p>
+            </article>
+        {{else}}
+            <p>No blog posts available at this time.</p>
+        {{/each}}
+    </section>
+</main> --}}
+<main class="container">
+    {{#if posts.length}}
+    <h1>Blog Posts</h1>
+    <section class="posts-section">
+        {{#each posts}}
+            <div class="post">
+                <h3><a href="/posts/{{this.id}}">{{this.title}}</a></h3>
+                <p>{{this.content}}</p>
+                <small>Posted on: {{this.createdAt}}</small>
+
+                <!-- "Leave a Comment" button  -->
+                <button class="comment-btn" onclick="window.location.href='/posts/{{this.id}}/comments'">Leave a Comment</button>
+            </div>
+        {{/each}}
+    </section>
+    {{else}}
+        <p>No blog posts available at this time.</p>
+    {{/if}}
 </main>
+
+<script src="./js/dashboard.js"></script>

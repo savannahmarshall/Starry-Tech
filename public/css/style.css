@@ -124,34 +124,36 @@ footer {
 
 /* Style individual post containers */
 .post {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 248, 248, 0.1);
     padding: 1.5rem;
     border-radius: 10px;
     margin-bottom: 2rem;
-    color: #fff; 
+    color: #000000; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
 }
 
 /* Style post titles */
-.post h2 {
-    color: #c859d4; 
-    font-family: 'Georgia', serif; 
-    font-size: 2rem;
-} 
+.post h3 {
+    color: #0404d8; 
+    font-family: "Press Start 2P", system-ui; 
+    font-size: 3rem;
+}  
 
 /* Style post content */
  .post p {
-    font-size: 1.1rem;
+    font-size: 2.5rem;
     line-height: 1.5;
-    color: #ffffff; 
+    color: #3bd98a; 
+    font-family: "Press Start 2P", system-ui; 
 } 
 
 /* Style post metadata */
 .post small {
     display: block;
-    font-size: 0.9rem;
+    font-size: 2rem;
     color: #ccc;
-    margin-top: 1rem;
+    font-family: "Press Start 2P", system-ui; 
+    margin-bottom: 20px;
 } 
 
 /* Create Post button container */
@@ -242,9 +244,38 @@ footer {
 textarea.form-input {
     height: 150px; 
     width: 100%;
+    font-family: "Press Start 2P", system-ui; 
 }
 
-/* Edit Post Modal Styles */
+/* Edit Post Button Styles */
+.edit-btn { 
+    background-color: #46e7a3;
+    border: none; 
+    color: #000000;  
+    padding: 15px 30px; 
+    font-size: 1.5rem; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin: 10px auto; 
+    font-family: "Press Start 2P", system-ui; 
+    transition: background-color 0.3s, color 0.3s; 
+    margin-right: 25px;
+}
+
+/* Delete Post Button Styles */
+.delete-btn { 
+    background-color: #46e7a3;
+    border: none; 
+    color: #000000;  
+    padding: 15px 30px; 
+    font-size: 1.5rem; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin: 10px auto; 
+    font-family: "Press Start 2P", system-ui; 
+    transition: background-color 0.3s, color 0.3s; 
+}  
+
 /* Edit Post Modal Styles */
 .modal-container {
     display: none; 
@@ -258,19 +289,21 @@ textarea.form-input {
 }
 
 .modal-content {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     margin: 10% auto; 
     padding: 20px;
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
     width: 50%;
+    border: 1px solid  #46e7a3;
 }
 
 .modal-label {
-    font-size: 18px; 
-    color: #555; 
+    font-size: 20px; 
+    color: #ffffffa7; 
     display: block; 
     margin-top: 15px; 
+    font-family: "Press Start 2P", system-ui; 
 }
 
 .modal-input,
@@ -278,34 +311,41 @@ textarea.form-input {
     width: 90%; 
     padding: 10px; 
     margin-top: 5px; 
-    border: 1px solid #ccc; 
+    border: 1px solid  #46e7a3;
     border-radius: 4px;
     font-size: 16px; 
+    background-color: #08092c;
+    color: white;
+    font-family: "Press Start 2P", system-ui; 
 }
 
 .modal-textarea {
     height: 100px; 
     resize: none; 
+    color: white;
+    font-family: "Press Start 2P", system-ui; 
 }
 
 .modal-update-button {
-    background-color: #4CAF50; 
-    color: white; 
+    background-color: #46e7a3;
+    color: rgb(0, 0, 0); 
     padding: 10px 20px; 
     border: none; 
     border-radius: 4px; 
     font-size: 16px; 
     cursor: pointer; 
     display: block; 
+    font-family: "Press Start 2P", system-ui; 
     margin: 20px auto 0; 
+
 }
 
 .modal-update-button:hover {
-    background-color: #45a049; 
+    background-color:  #38b69c; 
 }
 
 .modal-close {
-    color: #aaa;
+    color: #ffffff;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -313,7 +353,7 @@ textarea.form-input {
 
 .modal-close:hover,
 .modal-close:focus {
-    color: black;
+    color:#46e7a3;
     text-decoration: none;
     cursor: pointer;
 }

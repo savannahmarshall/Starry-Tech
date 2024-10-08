@@ -24,10 +24,10 @@
 
 {{#if posts.length}}
   <section class="posts-section">
-    <h2>Your Posts</h2>
     {{#each posts}}
       <div class="post">
-        <h3><a href="/posts/{{this.id}}">{{this.title}}</a></h3>
+        {{!-- <h3><a href="/posts/{{this.id}}">{{this.title}}</a></h3> --}}
+        <h3>{{this.title}}</h3>
         <p>{{this.content}}</p>
         <small>Created on {{this.createdAt}}</small>
         <button data-id="{{this.id}}" class="edit-btn">Edit</button>

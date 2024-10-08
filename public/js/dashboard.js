@@ -58,7 +58,7 @@ const closeModal = document.querySelector('.modal-close');
 document.querySelectorAll('.edit-btn').forEach(button => {
     button.addEventListener('click', (event) => {
         const id = event.target.getAttribute('data-id');
-        const postTitle = event.target.parentElement.querySelector('h3 a').innerText;
+        const postTitle = event.target.parentElement.querySelector('h3').innerText;
         const postContent = event.target.parentElement.querySelector('p').innerText;
 
         // Set the form action for PUT request

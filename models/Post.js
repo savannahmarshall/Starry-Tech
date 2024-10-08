@@ -25,16 +25,6 @@ Post.init(
         key: 'id',
       },
     },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
     published: { 
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -44,9 +34,9 @@ Post.init(
   {
     sequelize,
     modelName: 'post',
-    timestamps: true, 
+    timestamps: true,
     freezeTableName: true,
-    underscored: true,
+    underscored: true, 
   }
 );
 

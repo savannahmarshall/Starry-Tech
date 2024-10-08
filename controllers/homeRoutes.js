@@ -1,21 +1,30 @@
 const router = require('express').Router();
-const { Post, User } = require('../models'); //add comment model later when working on comments
+const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-// GET route for the homepage
+
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.findAll();
-    res.render('homepage', { posts, logged_in: req.session.logged_in });
+      const postData = await Post.findAll({
+          include: [
+              { model: User, attributes: ['id', 'username'] }
+          ],
+          order: [['createdAt', 'DESC']]
+      });
+      
+      const posts = postData.map(post => post.get({ plain: true }));
+      console.log(posts); 
+      res.render('homepage', { posts, logged_in: req.session.logged_in || false });
   } catch (err) {
-    res.status(500).json({ message: 'Error fetching posts', error: err });
+      console.error(err); 
+      res.status(500).json({ message: 'Error fetching posts', error: err });
   }
 });
+
 
 // Route for the dashboard
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Post }],
