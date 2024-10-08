@@ -5,7 +5,6 @@
   <button id="new-post-btn" class="create-post-btn">+ New Post</button>
 </div>
 
-
 <!-- Hidden form for creating a new post -->
 <div id="new-post-form-container" class="form-container" style="display: none;">
     <form id="new-post-form" class="new-post-form">
@@ -23,8 +22,6 @@
     </form>
 </div>
 
-<script src="./js/dashboard.js"></script>
-
 {{#if posts.length}}
   <section class="posts-section">
     <h2>Your Posts</h2>
@@ -41,3 +38,24 @@
 {{else}}
   <p>You haven't posted any blog entries yet.</p>
 {{/if}}
+
+<!-- Modal for Editing Post -->
+<div id="editModal" class="modal-container" style="display: none;">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h2>Edit Post</h2>
+    <form id="editForm" method="POST">
+      <input type="hidden" name="_method" value="PUT">
+      
+      <label class="modal-label" for="edit-title">Title:</label>
+      <input type="text" name="title" id="edit-title" class="modal-input" required>
+      
+      <label class="modal-label" for="edit-content">Content:</label>
+      <textarea name="content" id="edit-content" class="modal-textarea" required></textarea>
+      
+      <button class="modal-update-button" type="submit">Update Post</button>
+    </form>
+  </div>
+</div>
+
+<script src="./js/dashboard.js"></script>

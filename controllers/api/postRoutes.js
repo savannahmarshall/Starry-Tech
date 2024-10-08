@@ -15,82 +15,52 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+// Delete post using DELETE method
+router.delete('/:id', async (req, res) => {
   try {
-    const postData = await Post.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
+      const result = await Post.destroy({ where: { id: req.params.id } });
 
-    if (!postData) {
-      res.status(404).json({ message: 'No post found with this id!' });
-      return;
-    }
+      if (!result) {
+          return res.status(404).json({ message: 'No post found with this id!' });
+      }
 
-    res.status(200).json(postData);
+      res.status(204).send(); 
   } catch (err) {
-    res.status(500).json(err);
+      res.status(500).json({ message: 'Error deleting post', error: err });
   }
 });
 
-
-
-// Get all posts for the homepage
-router.get('/', async (req, res) => {
-    try {
-        const posts = await Post.findAll(); 
-        res.render('homepage', { posts }); 
-    } catch (err) {
-        res.status(500).json({ message: 'Error fetching posts', error: err });
-    }
-});
-
-// Get single post 
-router.get('/:id', async (req, res) => {
-    try {
-        const post = await Post.findByPk(req.params.id); 
-        if (!post) {
-            return res.status(404).json({ message: 'Post not found' });
-        }
-        res.render('post', { post }); 
-    } catch (err) {
-        res.status(500).json({ message: 'Error fetching post', error: err });
-    }
-});
-
-// Create new post
-router.post('/', async (req, res) => {
-    try {
-        const { title, content } = req.body;
-        const newPost = await Post.create({ title, content, userId: req.session.userId });
-        res.redirect('/dashboard');
-    } catch (err) {
-        res.status(500).json({ message: 'Error creating post', error: err });
-    }
-});
-
-// Update post
+// Update a post using PUT method
 router.put('/:id', async (req, res) => {
-    try {
-        const { title, content } = req.body;
-        await Post.update({ title, content }, { where: { id: req.params.id } });
-        res.redirect('/dashboard'); 
-    } catch (err) {
-        res.status(500).json({ message: 'Error updating post', error: err });
+  try {
+    const { title, content } = req.body;
+    const result = await Post.update(
+        { title, content },
+        { where: { id: req.params.id } }
+    );
+
+    if (result[0] === 0) {
+        return res.status(404).json({ message: 'No post found with this id!' });
     }
+
+    res.status(204).send();
+} catch (err) {
+    res.status(500).json({ message: 'Error updating post', error: err });
+}
 });
 
-// Delete post
-router.delete('/:id', async (req, res) => {
-    try {
-        await Post.destroy({ where: { id: req.params.id } });
-        res.redirect('/dashboard');
-    } catch (err) {
-        res.status(500).json({ message: 'Error deleting post', error: err });
-    }
-});
+
+
+// // Get all posts for the homepage
+// router.get('/', async (req, res) => {
+//     try {
+//         const posts = await Post.findAll(); 
+//         res.render('homepage', { posts }); 
+//     } catch (err) {
+//         res.status(500).json({ message: 'Error fetching posts', error: err });
+//     }
+// });
+
 
 module.exports = router;
 
