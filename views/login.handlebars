@@ -1,63 +1,80 @@
- <script>
-        function toggleForms() {
-            const loginForm = document.getElementById('login-form');
-            const signupForm = document.getElementById('signup-form');
-            const toggleText = document.getElementById('toggle-text');
+<script>
+    function toggleForms() {
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const toggleText = document.getElementById('toggle-text');
+        const formTitle = document.getElementById('form-title');
 
-            if (loginForm.style.display === 'none') {
-                // Show the login form and hide the signup form
-                loginForm.style.display = 'block';
-                signupForm.style.display = 'none';
-                toggleText.innerHTML = `Don't have an account? <a href="javascript:void(0)" onclick="toggleForms()">Sign up</a>`;
-            } else {
-                // Show the signup form and hide the login form
-                loginForm.style.display = 'none';
-                signupForm.style.display = 'block';
-                toggleText.innerHTML = `Already have an account? <a href="javascript:void(0)" onclick="toggleForms()">Login</a>`;
-            }
+        if (loginForm.style.display === 'none') {
+            // Show the login form and hide the signup form
+            loginForm.style.display = 'block';
+            signupForm.style.display = 'none';
+            toggleText.innerHTML = `Don't have an account? <a href="javascript:void(0)" onclick="toggleForms()">Sign up</a>`;
+            formTitle.innerHTML = 'Log In'; // Update title for login
+        } else {
+            // Show the signup form and hide the login form
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'block';
+            toggleText.innerHTML = `Already have an account? <a href="javascript:void(0)" onclick="toggleForms()">Login</a>`;
+            formTitle.innerHTML = 'Sign Up'; // Update title for signup
         }
-    </script> 
-</head>
-<body>
+    }
 
-<div class="row">
-  <div class="col-md-6">
-    <h2>Login</h2>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Show the login form by default
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('signup-form').style.display = 'none';
+        document.getElementById('form-title').innerHTML = 'Log In'; 
+    });
+</script>
 
-    <form class="form login-form">
-      <div class="form-group">
-        <label for="username-login">Username:</label>
-        <input class="form-input" type="text" id="username-login" name="username" />
-      </div>
-      <div class="form-group">
-        <label for="password-login">Password:</label>
-        <input class="form-input" type="password" id="password-login" name="password" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Login</button>
-      </div>
-    </form>
-  </div>
+<div>
+    <h3 id="login-form-title">Welcome to Starry Tech! Log in or sign up below to get started</h3> 
+</div>
+<div>
+    <div>
+        <form class="form login-form" id="login-form">
+            <div>
+                <label for="username-login">Username:</label>
+                <span class="input-wrapper">
+                    <input class="form-input-login" type="text" id="username-login" name="username" />
+                </span>
+            </div>
+            <div>
+                <label for="password-login">Password:</label>
+                <span class="input-wrapper">
+                    <input class="form-input-login" type="password" id="password-login" name="password" />
+                </span>
+            </div>
+            <div>
+                <button class="submit-btn" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
 
-  <div class="col-md-6">
-    <h2>Signup</h2>
+    <div>
+        <form class="form signup-form" id="signup-form">
+            <div>
+                <label for="username-signup">Username:</label>
+                <span class="input-wrapper">
+                    <input class="form-input-login" type="text" id="username-signup" name="username" />
+                </span>
+            </div>
+            <div>
+                <label for="password-signup">Password:</label>
+                <span class="input-wrapper">
+                    <input class="form-input-login" type="password" id="password-signup" name="password" />
+                </span>
+            </div>
+            <div>
+                <button class="submit-btn" type="submit">Signup</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="username-signup">Username:</label>
-        <input class="form-input" type="text" id="username-signup" name="username" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">Password:</label>
-        <input class="form-input" type="password" id="password-signup" name="password" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Signup</button>
-      </div>
-    </form>
-  </div>
+<div id="toggle-text" class="toggle-text">
+    Don't have an account? <a href="javascript:void(0)" onclick="toggleForms()">Sign up</a>
 </div>
 
 <script src="./js/login.js"></script>
-</body>
-</html>

@@ -1,26 +1,41 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../models');
+const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-
+// Route for the homepage
 router.get('/', async (req, res) => {
   try {
-      const postData = await Post.findAll({
-          include: [
-              { model: User, attributes: ['id', 'username'] }
-          ],
-          order: [['createdAt', 'DESC']]
-      });
+    const postData = await Post.findAll({
+      include: [
+        { 
+          model: User, 
+          attributes: ['id', 'username'] 
+        }
+      ],
+      order: [['createdAt', 'DESC']] 
+    });
+    
+    // Convert postData to a plain object and format the date
+    const posts = postData.map(post => {
+      const plainPost = post.get({ plain: true });
       
-      const posts = postData.map(post => post.get({ plain: true }));
-      console.log(posts); 
-      res.render('homepage', { posts, logged_in: req.session.logged_in || false });
+      // Format the createdAt date
+      plainPost.createdAt = new Date(plainPost.createdAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      return plainPost;
+    });
+
+    // Render homepage with formatted posts
+    res.render('homepage', { posts, logged_in: req.session.logged_in || false });
   } catch (err) {
-      console.error(err); 
-      res.status(500).json({ message: 'Error fetching posts', error: err });
+    console.error(err); 
+    res.status(500).json({ message: 'Error fetching posts', error: err });
   }
 });
-
 
 // Route for the dashboard
 router.get('/dashboard', withAuth, async (req, res) => {

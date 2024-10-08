@@ -45,7 +45,7 @@ header {
 
 /* Site title styles */
 .site-title {
-    font-size: 2.2rem; 
+    font-size: 3rem; 
     margin: 0; 
 }
 
@@ -61,14 +61,22 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #d7cd3e; 
+    color:  #25bbf1,; 
     text-decoration: none;
-    font-size: 2rem; 
+    font-size: 3rem; 
     transition: color 0.3s; 
+    text-shadow: 
+        0 0 5px #25bbf1,    
+        0 0 10px #25bbf1,   
+        0 0 15px rgba(37, 187, 241, 0.5); 
 }
 
 nav ul li a:hover {
-    color: #FFA500; 
+    color: #d7cd3e; 
+    text-shadow: 
+        0 0 5px #25bbf1,    
+        0 0 10px #25bbf1, 
+        0 0 15px rgba(37, 187, 241, 0.5);
 }
 
 /* Container styles */
@@ -80,25 +88,35 @@ nav ul li a:hover {
 
 /* Heading styles */
 h1, h2 {
-    color: #25bbf1;
-    background-color: rgba(0, 0, 0, 0.8); 
-    padding: 10px 20px; 
-    display: inline-block; 
-    border-radius: 5px; 
-    font-family: "Press Start 2P", system-ui;
+    color: #25bbf1; 
+    text-align: center; 
+    font-family: "Press Start 2P", system-ui; 
+    font-size: 2.5rem; 
+    text-shadow: 
+        0 0 5px #25bbf1,    
+        0 0 10px #25bbf1,    
+        0 0 15px rgba(37, 187, 241, 0.5); 
     margin: 20px 0; 
+    background-color: black; 
+    padding: 10px; 
+    border-radius: 5px; 
 }
 
 /* Footer styles */
 footer {
     text-align: center; 
+    color: #25bbf1; 
     background-color: rgba(0, 0, 0, 0.8); 
     padding: 10px 20px; 
     font-weight: bold;
     font-family: "Press Start 2P", system-ui;
     font-size: 1.2rem;
-    color: #25bbf1;
+    text-shadow: 
+    0 0 5px #25bbf1,    
+    0 0 10px #25bbf1,    
+    0 0 15px rgba(37, 187, 241, 0.5); 
     margin-top: auto; 
+    
 }
 
 /* Footer content */
@@ -124,20 +142,19 @@ footer {
 
 /* Style individual post containers */
 .post {
-    background-color: rgba(255, 248, 248, 0.1);
+    background-color: rgba(0, 0, 0, 0.6); 
     padding: 1.5rem;
     border-radius: 10px;
     margin-bottom: 2rem;
-    color: #000000; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
-
 /* Style post titles */
 .post h3 {
-    color: #0404d8; 
+    color: #6363ff; 
     font-family: "Press Start 2P", system-ui; 
     font-size: 3rem;
-}  
+}
 
 /* Style post content */
  .post p {
@@ -356,4 +373,173 @@ textarea.form-input {
     color:#46e7a3;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Comment Section Styles */
+.comments-section {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    font-family: "Press Start 2P", system-ui;
+}
+
+
+/* Individual comment box */
+.comment {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+/* Text for each comment */
+.comment p {
+    margin: 0 0 5px;
+    color: #000000;
+    font-family: "Press Start 2P", system-ui;
+}
+
+/* text (username and date) */
+.comment small {
+    color: #000000;
+    font-family: "Press Start 2P", system-ui;
+}
+
+/* Form for leaving a comment */
+.comment-form {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Textarea for writing a comment */
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #08092c;
+    margin-bottom: 10px;
+    font-family: inherit;
+    font-size: 1.5rem;
+    resize: vertical;
+    min-height: 80px;
+    border: 1px solid  #46e7a3;
+    font-family: "Press Start 2P", system-ui;
+    color: white;
+}
+
+/* Submit button for the comment form */
+.comment-form button {
+    background-color: #46e7a3;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 1.5rem;
+}
+
+/* Submit button hover effect */
+.comment-form button:hover {
+    background-color:#38b69c; 
+}
+
+#login-form-title {
+    color: #46e7a3;
+    text-align: center; 
+    font-family: "Press Start 2P", system-ui; 
+    font-size: 2.5rem; 
+    text-shadow: 
+        0 0 5px #46e7a3,    
+        0 0 10px #46e7a3,  
+        0 0 15px rgba(70, 231, 163, 0.5);
+    margin: 20px 0; 
+    background-color: black; 
+    padding: 20px; 
+    border-radius: 5px; 
+    margin-bottom: 120px; 
+}
+
+/* Toggle Text Styles */
+.toggle-text {
+    text-align: center;
+    margin-top: 100px; 
+    font-family: "Press Start 2P", system-ui; 
+    color: #46e7a3;
+    font-size: 2rem; 
+    padding: 15px; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    border-radius: 10px; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
+}
+
+.toggle-text a {
+    color: #46e7a3; 
+    text-decoration: none; 
+    transition: color 0.3s, text-shadow 0.3s; 
+    text-shadow: 
+        0 0 5px #46e7a3, 
+        0 0 10px rgba(70, 231, 163, 0.5); 
+}
+
+.toggle-text a:hover {
+    color: #1a8fbf; 
+    text-shadow: 
+        0 0 5px #1a8fbf, 
+        0 0 10px rgba(26, 143, 191, 0.5); 
+}
+.input-wrapper {
+    border: 1px solid #ccc;
+    padding: 10px; 
+    border-radius: 4px;
+    font-size: 2rem;
+    display: block; 
+    margin-bottom: 30px; 
+}
+
+.form-input-login {
+    width: 100%; 
+    border: none;
+    outline: none; 
+    font-size: 2.5rem; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    color: white;
+    font-family: "Press Start 2P", system-ui; 
+    border: 1px solid  #46e7a3;
+    border-radius: 4px;
+    background-color: #08092c;
+}
+
+label {
+    font-size: 3rem; 
+    margin-bottom: 30px; 
+    display: block; 
+    font-family: "Press Start 2P", system-ui;
+    margin-top: 70px; 
+    color: #46e7a3;
+}
+
+.submit-btn {
+    margin-top: 20px; 
+    background-color: #46e7a3;
+    color: black;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+/* Additional styles for layout */
+.form {
+    max-width: 1300px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    border-radius: 10px; 
+    background-color: rgba(0, 0, 0, 0.7); 
 }
