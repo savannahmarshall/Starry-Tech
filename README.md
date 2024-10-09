@@ -19,7 +19,7 @@
 
 **Login (All Users):** Users can log in or create an account by entering a username and password. Passwords must be at least 8 characters long for account creation. After successfully registering, users are automatically logged in and redirected to the dashboard.
 
-**Dashboard (Logged-in Users):** Access to the Dashboard is restricted to logged-in users. Once logged in, users can create new posts by clicking the **+ New Post** button. This opens a prompt to enter a post title and content. Once submitted, the post appears in the dashboard, where users can choose to edit or delete it.
+**Dashboard (Logged-in Users):** Access to the Dashboard is restricted to logged-in users. If a user selects dashboard in the nav while they are logged out, they will be redirected to the login page. Once logged in, users can create new posts by clicking the **+ New Post** button. This opens a prompt to enter a post title and content. Once submitted, the post appears in the dashboard, where users can choose to edit or delete it.
 
 * Edit Post: Click the **Edit** button to modify a post’s title and content. After making changes, you can resubmit it.
 * Delete Post: Clicking the **Delete** button removes the post from both the homepage and dashboard.
