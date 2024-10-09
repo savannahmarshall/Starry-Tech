@@ -442,9 +442,12 @@ textarea.form-input {
 
 /* Individual comment box */
 .comment {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
+    background-color: #f4f4f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    border-left: 4px solid #46e7a3; 
 }
 
 /* Text for each comment */

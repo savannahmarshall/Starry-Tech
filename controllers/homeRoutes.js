@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Route for the homepage
@@ -10,12 +10,20 @@ router.get('/', async (req, res) => {
         { 
           model: User, 
           attributes: ['id', 'username'] 
+        },
+        { 
+          model: Comment,
+          include: [
+            {
+              model: User,
+              attributes: ['username']
+            }
+          ]
         }
       ],
       order: [['createdAt', 'DESC']] 
     });
     
-    // Convert postData to a plain object and format the date
     const posts = postData.map(post => {
       const plainPost = post.get({ plain: true });
       
@@ -26,10 +34,22 @@ router.get('/', async (req, res) => {
         day: 'numeric'
       });
 
+      // Format comments
+      plainPost.comments = plainPost.comments.map(comment => {
+        return {
+          ...comment,
+          createdAt: new Date(comment.createdAt).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })
+        };
+      });
+
       return plainPost;
     });
 
-    // Render homepage with formatted posts
+    // Render homepage with formatted posts and comments
     res.render('homepage', { posts, logged_in: req.session.logged_in || false });
   } catch (err) {
     console.error(err); 
@@ -56,6 +76,30 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
+// Route for fetching comments for a specific post
+router.get('/comments/:post_id', async (req, res) => {
+  try {
+    const commentsData = await Comment.findAll({
+      where: {
+        post_id: req.params.post_id
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'username']
+        }
+      ],
+      order: [['createdAt', 'DESC']] 
+    });
+
+    const comments = commentsData.map(comment => comment.get({ plain: true }));
+
+    res.status(200).json(comments); 
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error fetching comments', error: err });
+  }
+});
 
 // Route for the login page
 router.get('/login', (req, res) => {

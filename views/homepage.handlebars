@@ -1,42 +1,48 @@
 <main class="container">
     {{#if posts.length}}
-    <h1>Blog Posts</h1>
-    <section class="posts-section">
-        {{#each posts}}
-            <div class="post">
-                <h3>{{this.title}}</h3>
-                <p>{{this.content}}</p>
+        <h1>Blog Posts</h1>
+        <section class="posts-section">
+            {{#each posts}}
+                <div class="post">
+                    <h3>{{this.title}}</h3>
+                    <p>{{this.content}}</p>
+                    
+                    <!-- Author and Date -->
+                    <small>Posted by {{this.user.username}} on {{this.createdAt}}</small>
 
-                <!-- Display the username and formatted creation date -->
-                <small>Posted by {{this.user.username}} on {{this.createdAt}}</small>
+                    <!-- Comments List -->
+                    <section class="comments-section">
+                        <div id="comments-list-{{this.id}}"></div>
+                        
+                        <!-- Fetch comments when the post is loaded -->
+                        <script>
+                            fetchComments({{this.id}});
+                        </script>
 
-                <!-- "Comment button and existing comments section -->
-                <section class="comments-section">
-                    {{#if this.comments.length}}
-                        {{#each this.comments}}
-                            <div class="comment">
-                                <p>{{this.content}}</p>
-                                <small>Comment by {{this.user.username}} on {{this.created_at}}</small>
-                            </div>
-                        {{/each}}
-                    {{else}}
-                        {{!-- <p>No comments yet. Be the first to comment!</p> --}}
-                    {{/if}}
+                        <!-- Display existing comments (if any) -->
+                        <div id="existing-comments-{{this.id}}">
+                            {{#each this.comments}} 
+                                <div class="comment">
+                                    <p>{{this.content}}</p>
+                                    <small>Comment by {{this.user.username}} on {{this.createdAt}}</small>
+                                </div>
+                            {{/each}}
+                        </div>
 
-                    <!-- Comment form: Only show if user is logged in -->
-                    {{#if ../logged_in}}
-                    <form id="comment-form-{{this.id}}" method="POST" class="comment-form">
-                        <textarea name="content" required placeholder="Write your comment here..."></textarea>
-                        <input type="hidden" name="post_id" value="{{this.id}}">
-                        <button type="submit">Comment</button>
-                    </form>
-                    {{else}}
-                        <p class="comment-line">Please <a href="/login">log in</a> to leave a comment.</p>
-                    {{/if}}
-                </section>
-            </div>
-        {{/each}}
-    </section>
+                        <!-- Comment form: Only show if user is logged in -->
+                        {{#if ../logged_in}}
+                            <form id="comment-form-{{this.id}}" method="POST" class="comment-form">
+                                <textarea name="content" required placeholder="Write your comment here..."></textarea>
+                                <input type="hidden" name="post_id" value="{{this.id}}">
+                                <button type="submit">Comment</button>
+                            </form>
+                        {{else}}
+                            <p class="comment-line">Please <a href="/login">log in</a> to leave a comment.</p>
+                        {{/if}}
+                    </section>
+                </div>
+            {{/each}}
+        </section>
     {{else}}
         <p>No blog posts available at this time.</p>
     {{/if}}
