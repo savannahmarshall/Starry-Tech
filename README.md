@@ -15,7 +15,7 @@
 
 ## Usage
 
-**Homepage (All Users):** Visitors can view blog posts arranged from oldest to newest on the homepage. Each post displays its title, content, the user who created it, and the date it was posted. Comments on posts are also visible to all users. However, commenting on posts is reserved for logged-in users. To engage further, click the **Log In (All Users):** button in the upper right corner to navigate to the login page.
+**Homepage (All Users):** Visitors can view blog posts arranged from newest to oldest on the homepage. Each post displays its title, content, the user who created it, and the date it was posted. Comments on posts are also visible to all users. However, commenting on posts is reserved for logged-in users. To engage further, click the **Log In (All Users):** button in the upper right corner to navigate to the login page.
 
 **Login:** Users can log in or create an account by entering a username and password. Passwords must be at least 8 characters long for account creation. After successfully registering, users are automatically logged in and redirected to the dashboard.
 
