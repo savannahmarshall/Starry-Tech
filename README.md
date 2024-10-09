@@ -21,8 +21,8 @@
 
 **Dashboard (Logged-in Users):** Access to the Dashboard is restricted to logged-in users. If a user selects dashboard in the navigation while they are logged out, they will be redirected to the login page. Once logged in, users can create new posts by clicking the **+ New Post** button. This opens a prompt to enter a post title and content. Once submitted, the post appears in the dashboard, where users can choose to edit or delete it.
 
-* Edit Post: Click the **Edit** button to modify a post’s title and content. After making changes, you can resubmit it.
-* Delete Post: Clicking the **Delete** button removes the post from both the homepage and dashboard.
+* **Edit Post:** Click the **Edit** button to modify a post’s title and content. After making changes, you can resubmit it.
+* **Delete Post:** Clicking the **Delete** button removes the post from both the homepage and dashboard.
 
 **Homepage(Logged-in Users):** In addition to viewing posts, logged-in users have the ability to comment on blog posts directly from the homepage. A **Comment** section is available beneath each post, enabling users to share their thoughts.
 
