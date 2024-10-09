@@ -2,31 +2,40 @@
 
 ## Description
 
-Starry-Tech is a CMS-style blog site where users can publish articles, write blog posts, and share their thoughts and opinions. Starry-Tech follows the MVC paradigm and uses Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
+**Starry-Tech** is a CMS-style blog platform where users can create, edit, delete, and comment on blog posts. The site encourages user interaction by allowing individuals to share their thoughts and opinions on various topics. Built using the Model-View-Controller (MVC) architecture, it integrates Handlebars.js as the templating engine, Sequelize as the ORM, and uses express-session for authentication. The backend relies on Node.js and Express.js to deliver a smooth and secure experience.
 
 ## Table of Contents
   
 - [Usage](#usage)
-- [License](#license)
 - [Contributing](#contributing)
+- [License](#license)
 - [Tests](#tests)
 - [Questions](#questions)
 
 
 ## Usage
 
-**Navigation:** 
-**Login/Logout:**
-**Create Post:**
+**Homepage (All Users):** Visitors can view blog posts arranged from oldest to newest on the homepage. Each post displays its title, content, the user who created it, and the date it was posted. Comments on posts are also visible to all users. However, commenting on posts is reserved for logged-in users. To engage further, click the **Log In** button in the upper right corner to navigate to the login page.
 
-**Please click [here]() to view the deployed application on Render.**
+**Login:** Users can log in or create an account by entering a username and password. Passwords must be at least 8 characters long for account creation. After successfully registering, users are automatically logged in and redirected to the dashboard.
+
+**Dashboard (Logged-in Users):** Access to the Dashboard is restricted to logged-in users. Once logged in, users can create new posts by clicking the **+ New Post** button. This opens a prompt to enter a post title and content. Once submitted, the post appears in the dashboard, where users can choose to edit or delete it.
+
+* Edit Post: Click the **Edit** button to modify a post’s title and content. After making changes, you can resubmit it.
+* Delete Post: Clicking the **Delete** button removes the post from both the homepage and dashboard.
+
+**Homepage(Logged-in Users):** In addition to viewing posts, logged-in users have the ability to comment on blog posts directly from the homepage. A **Comment** section is available beneath each post, enabling users to share their thoughts.
+
+**Please click [here](https://starry-tech.onrender.com/) to view the deployed application on Render.**
 
 
-![screenshot of home]()
+![screenshot of login](https://github.com/savannahmarshall/Starry-Tech/blob/main/public/images/screenshots/login.png)
 
-![screenshot of dashboard]()
+![screenshot of home](https://github.com/savannahmarshall/Starry-Tech/blob/main/public/images/screenshots/blog-posts.png)
 
-![screenshot of login]()
+![screenshot of new post screen](https://github.com/savannahmarshall/Starry-Tech/blob/main/public/images/screenshots/new-post.png)
+
+![screenshot of edit post screen](https://github.com/savannahmarshall/Starry-Tech/blob/main/public/images/screenshots/edit-post.png)
 
 
 
