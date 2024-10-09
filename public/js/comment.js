@@ -6,7 +6,7 @@ document.querySelectorAll('.comment-form').forEach((form) => {
       const post_id = form.querySelector('input[name="post_id"]').value;
   
       if (content) {
-        const response = await fetch('/comments', {
+        const response = await fetch('api/comments/comments', {
           method: 'POST',
           body: JSON.stringify({ content, post_id }),
           headers: { 'Content-Type': 'application/json' },
