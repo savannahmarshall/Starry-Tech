@@ -22,6 +22,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center; 
+    background-image: url('/images/lights.png'); 
+    background-size: 110%; 
+    background-position: center; 
+    background-repeat: none;
 }
 
 /* Header container styles */
@@ -107,37 +111,54 @@ footer {
     text-align: center; 
     color: #25bbf1; 
     background-color: rgba(0, 0, 0, 0.8); 
-    padding: 10px 20px; 
+    background-image: url('/images/shooting-starrr.jpg'); 
+    background-size: 55%; 
+    background-position: center; 
+    background-repeat: repeat;
+    padding: 20px 20px; 
     font-weight: bold;
     font-family: "Press Start 2P", system-ui;
     font-size: 1.2rem;
     text-shadow: 
-    0 0 5px #25bbf1,    
-    0 0 10px #25bbf1,    
-    0 0 15px rgba(37, 187, 241, 0.5); 
+        0 0 5px #25bbf1,    
+        0 0 10px #25bbf1,    
+        0 0 15px rgba(37, 187, 241, 0.5); 
     margin-top: auto; 
-    
+    position: relative; 
+    min-height: 100px;
 }
 
-/* Footer content */
+footer::before {
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; 
+}
+
 .footer-content {
+    position: relative; 
+    z-index: 2; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
+    margin-top: 20px;
 }
 
-/* Footer icon */
 .footer-icon {
     width: 35px; 
     height: auto; 
     margin: 0 5px; 
 }
 
-
 /* Post-specific styles */
 .posts-section {
     text-align: center; 
     margin: 20px 0;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* Style individual post containers */
@@ -148,26 +169,47 @@ footer {
     margin-bottom: 2rem;
     color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border: 1px solid  #46e7a3;
 }
 /* Style post titles */
 .post h3 {
     color: #6363ff; 
     font-family: "Press Start 2P", system-ui; 
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 /* Style post content */
  .post p {
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 1.5;
     color: #3bd98a; 
     font-family: "Press Start 2P", system-ui; 
 } 
 
+p.comment-line {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #25bbf1; 
+    font-family: "Press Start 2P", system-ui;
+}
+.post a {
+    font-size: 1rem;
+    line-height: 1.5;
+    color:   #25bbf1; 
+    font-family: "Press Start 2P", system-ui; 
+    text-decoration: none;
+    transition: color 0.3s ease; 
+}
+
+.post a:hover {
+    color:  #7d3bd9; 
+    text-decoration: none; 
+}
+
 /* Style post metadata */
 .post small {
     display: block;
-    font-size: 2rem;
+    font-size: 1rem;
     color: #ccc;
     font-family: "Press Start 2P", system-ui; 
     margin-bottom: 20px;
@@ -292,6 +334,20 @@ textarea.form-input {
     font-family: "Press Start 2P", system-ui; 
     transition: background-color 0.3s, color 0.3s; 
 }  
+
+.blog-entries {
+    color: #46e7a3; 
+    font-family: "Press Start 2P", system-ui;
+    font-size: 1.8rem; 
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8); 
+    padding: 15px 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+    margin: 20px auto; 
+    max-width: 1000px; 
+    line-height: 1.6; 
+}
 
 /* Edit Post Modal Styles */
 .modal-container {
@@ -459,6 +515,7 @@ textarea.form-input {
     padding: 20px; 
     border-radius: 5px; 
     margin-bottom: 120px; 
+    margin-top: 40px;
 }
 
 /* Toggle Text Styles */
