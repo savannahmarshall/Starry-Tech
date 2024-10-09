@@ -206,6 +206,7 @@ p.comment-line {
     line-height: 1.5;
     color: #25bbf1; 
     font-family: "Press Start 2P", system-ui;
+    margin-top: 30px;
 }
 .post a {
     font-size: 1rem;
