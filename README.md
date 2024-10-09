@@ -24,7 +24,7 @@
 * **Edit Post:** Click the **Edit** button to modify a post’s title and content. After making changes, you can resubmit it.
 * **Delete Post:** Clicking the **Delete** button removes the post from both the homepage and dashboard.
 
-**Homepage(Logged-in Users):** In addition to viewing posts, logged-in users have the ability to comment on blog posts directly from the homepage. A **Comment** section is available beneath each post, enabling users to share their thoughts.
+**Homepage (Logged-in Users):** In addition to viewing posts, logged-in users have the ability to comment on blog posts directly from the homepage. A **Comment** section is available beneath each post, enabling users to share their thoughts.
 
 **Please click [here](https://starry-tech.onrender.com/) to view the deployed application on Render.**
 
