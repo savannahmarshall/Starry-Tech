@@ -154,6 +154,21 @@ footer::before {
     margin: 0 5px; 
 }
 
+.home-posts {
+    color: #46e7a3; 
+    font-family: "Press Start 2P", system-ui;
+    font-size: 1.8rem; 
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8); 
+    padding: 15px 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+    margin: 20px auto; 
+    max-width: 1000px; 
+    line-height: 1.6; 
+
+}
+
 /* Post-specific styles */
 .posts-section {
     text-align: center; 
@@ -442,24 +457,27 @@ textarea.form-input {
 
 /* Individual comment box */
 .comment {
-    background-color: #f4f4f9;
+    background-color: #18181c;
     padding: 15px;
+    color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
-    border-left: 4px solid #46e7a3; 
+    border: 4px solid #46e7a3; 
 }
 
 /* Text for each comment */
 .comment p {
     margin: 0 0 5px;
-    color: #000000;
+    color: #818181;
+    font-size: 1.3rem;
     font-family: "Press Start 2P", system-ui;
 }
 
 /* text (username and date) */
 .comment small {
-    color: #000000;
+    color: #9b9b9b;
+    font-size: 0.8rem;
     font-family: "Press Start 2P", system-ui;
 }
 
