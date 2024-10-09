@@ -3,15 +3,12 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers'); 
-const helpers = require('./utils/helpers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up Handlebars.js engine using helpers
-const hbs = exphbs.create({ helpers });
 
 // Session configuration
 const sess = {
@@ -29,6 +26,8 @@ const sess = {
   }),
 };
 
+const hbs = exphbs.create({});
+
 // Use middleware for session
 app.use(session(sess));
 
@@ -44,15 +43,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use routes
 app.use(routes); 
 
-// Start the server
-const startServer = async () => {
-  try {
-    await sequelize.sync({ force: false }); 
-    app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}/`));
-  } catch (error) {
-    console.error('Error syncing database:', error);
-  }
-};
+// Sync Sequelize models to the database, then start the server
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+});
 
 // Call the function to start the server
-startServer();
+// startServer();
